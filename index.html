@@ -1,166 +1,136 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Links Oficiais - Premium</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Links Oficiais - Premium</title>
 
-  <style>
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Arial', Helvetica, sans-serif;
-    }
+<style>
+  /* RESET */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', Helvetica, sans-serif;
+  }
 
-    body {
-      background: #000;
-      min-height: 100vh;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow-x: hidden;
-      position: relative;
-    }
+  body {
+    background: #000;
+    min-height: 100vh;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+  }
 
-    /* IMAGENS LATERAIS COM DEGRADÊ */
-    .side-image {
-      position: fixed;
-      top: 0;
-      height: 100vh;
-      width: 18vw;
-      z-index: 1;
-      overflow: hidden;
-    }
+  /* IMAGENS LATERAIS COM DEGRADÊ AO REDOR */
+  .side-image {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 20vw;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 0;
+  }
 
-    .side-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+  .side-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
 
-    /* DEGRADÊ SOBRE IMAGEM */
-    .side-image::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+  /* DEGRADÊ AO REDOR DA FOTO */
+  .side-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0) 70%, rgba(0,0,0,0.9) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
 
-    .side-image.left {
-      left: 0;
-    }
+  .side-image.left { left: 0; }
+  .side-image.right { right: 0; }
 
-    .side-image.left::after {
-      background: linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0));
-    }
+  /* CONTEÚDO CENTRAL */
+  .container {
+    z-index: 2;
+    width: 100%;
+    max-width: 320px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 
-    .side-image.right {
-      right: 0;
-    }
+  /* BOTÕES COMPACTOS, TRANSPARENTES/FOSCOS */
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    justify-content: center;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(5px);
+  }
 
-    .side-image.right::after {
-      background: linear-gradient(to left, rgba(0,0,0,0.85), rgba(0,0,0,0));
-    }
+  .btn img {
+    width: 20px;
+    height: 20px;
+  }
 
-    /* CONTEÚDO CENTRAL */
-    .container {
-      z-index: 2;
-      width: 100%;
-      max-width: 320px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+  }
 
-    /* SEÇÃO COM CARTÃO GLASS */
-    .section {
-      background: rgba(30, 30, 30, 0.5); /* fundo fosco/transparente */
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    }
+  .btn:active {
+    transform: scale(0.97);
+  }
 
-    .section p {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #eee;
-      text-align: center;
-    }
+  /* TEXTO CENTRAL (opcional) */
+  .text {
+    text-align: center;
+    font-size: 14px;
+    color: #eee;
+    line-height: 1.5;
+  }
 
-    .links-box {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-    }
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .side-image { width: 25vw; }
+    .container { max-width: 90%; }
+    .btn { font-size: 13px; padding: 10px 14px; }
+  }
 
-    /* BOTÕES TRANSPARENTES / FOSCOS */
-    .btn {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.05); /* transparente/fosco */
-      border: 1px solid rgba(255,255,255,0.1);
-      text-decoration: none;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 500;
-      width: 100%;
-      justify-content: center;
-      transition: all 0.25s ease;
-      backdrop-filter: blur(4px);
-    }
-
-    .btn img {
-      width: 20px;
-      height: 20px;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.08);
-    }
-
-    .btn:active {
-      transform: scale(0.97);
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .side-image {
-        width: 25vw;
-      }
-
-      .container { max-width: 90%; }
-
-      .section p { font-size: 15px; }
-    }
-
-    @media (max-width: 480px) {
-      .side-image { width: 30vw; }
-      .btn { font-size: 13px; padding: 8px 12px; }
-    }
-  </style>
+  @media (max-width: 480px) {
+    .side-image { width: 30vw; }
+    .btn { font-size: 12px; padding: 8px 12px; }
+  }
+</style>
 </head>
 
 <body>
 
-  <!-- IMAGENS LATERAIS COM DEGRADÊ -->
+  <!-- IMAGENS LATERAIS COM DEGRADÊ AO REDOR -->
   <div class="side-image left">
     <img src="imagens/modelo-esquerda.png" alt="Modelo esquerda">
   </div>
@@ -172,39 +142,23 @@
   <!-- CONTEÚDO CENTRAL -->
   <main class="container">
 
-    <!-- SEÇÃO CONTEÚDO EXCLUSIVO -->
-    <div class="section">
-      <p>
-        Conteúdo exclusivo, sem filtros e mais próximo de mim.
-        Tudo que não compartilho em outras redes está lá.
-      </p>
-      <div class="links-box">
-        <a href="#" class="btn" target="_blank">
-          <img src="icons/telegram.png" alt="Telegram">
-          <span>Telegram</span>
-        </a>
-      </div>
-    </div>
+    <!-- LINK TELEGRAM (conteúdo exclusivo) -->
+    <a href="#" class="btn" target="_blank">
+      <img src="icons/telegram.png" alt="Telegram">
+      <span>Telegram</span>
+    </a>
 
-    <!-- SEÇÃO ROTINA / SOCIAL -->
-    <div class="section">
-      <p>
-        Um pouco da minha rotina, bastidores e momentos do dia a dia.
-        Conteúdos leves e interativos para vocês.
-      </p>
-      <div class="links-box">
-        <a href="https://www.instagram.com/ayla.avilar?igsh=MXJjamx1ZnRrcGR0Mg%3D%3D&utm_source=qr"
-           class="btn" target="_blank">
-          <img src="icons/instagram.png" alt="Instagram">
-          <span>Instagram</span>
-        </a>
+    <!-- LINK INSTAGRAM -->
+    <a href="https://www.instagram.com/ayla.avilar?igsh=MXJjamx1ZnRrcGR0Mg%3D%3D&utm_source=qr" class="btn" target="_blank">
+      <img src="icons/instagram.png" alt="Instagram">
+      <span>Instagram</span>
+    </a>
 
-        <a href="#" class="btn" target="_blank">
-          <img src="icons/tiktok.png" alt="TikTok">
-          <span>TikTok</span>
-        </a>
-      </div>
-    </div>
+    <!-- LINK TIKTOK -->
+    <a href="#" class="btn" target="_blank">
+      <img src="icons/tiktok.png" alt="TikTok">
+      <span>TikTok</span>
+    </a>
 
   </main>
 
