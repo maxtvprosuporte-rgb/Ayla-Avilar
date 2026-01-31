@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links Oficiais - Premium</title>
+
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', Helvetica, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(180deg, #000 0%, #111 100%);
+      min-height: 100vh;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* IMAGENS LATERAIS */
+    .side-image {
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      width: 18vw;
+      z-index: 1;
+    }
+
+    .side-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .side-image::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .side-image.left::after {
+      background: linear-gradient(to right, rgba(0,0,0,0), #000);
+    }
+
+    .side-image.right::after {
+      background: linear-gradient(to left, rgba(0,0,0,0), #000);
+    }
+
+    .side-image.left { left: 0; }
+    .side-image.right { right: 0; }
+
+    /* CONTEÚDO CENTRAL */
+    .container {
+      z-index: 2;
+      width: 100%;
+      max-width: 320px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* SEÇÃO COM CARTÃO GLASS */
+    .section {
+      background: rgba(25, 25, 25, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .section p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #eee;
+      text-align: center;
+    }
+
+    .links-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* BOTÕES PROFISSIONAIS */
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1a1a1a, #222);
+      border: 1px solid rgba(255,255,255,0.1);
+      text-decoration: none;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      width: 100%;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .btn img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+      background: linear-gradient(135deg, #2a2a2a, #333);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .side-image { display: none; }
+      .container { max-width: 90%; }
+      .section p { font-size: 15px; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- IMAGENS LATERAIS -->
+  <div class="side-image left">
+    <img src="imagens/modelo-esquerda.png" alt="Modelo esquerda">
+  </div>
+
+  <div class="side-image right">
+    <img src="imagens/modelo-direita.png" alt="Modelo direita">
+  </div>
+
+  <!-- CONTEÚDO CENTRAL -->
+  <main class="container">
+
+    <!-- SEÇÃO CONTEÚDO EXCLUSIVO -->
+    <div class="section">
+      <p>
+        Conteúdo exclusivo, sem filtros e mais próximo de mim.
+        Tudo que não compartilho em outras redes está lá.
+      </p>
+      <div class="links-box">
+        <a href="#" class="btn" target="_blank">
+          <img src="icons/telegram.png" alt="Telegram">
+          <span>Telegram</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- SEÇÃO ROTINA / SOCIAL -->
+    <div class="section">
+      <p>
+        Um pouco da minha rotina, bastidores e momentos do dia a dia.
+        Conteúdos leves e interativos para vocês.
+      </p>
+      <div class="links-box">
+        <a href="https://www.instagram.com/ayla.avilar?igsh=MXJjamx1ZnRrcGR0Mg%3D%3D&utm_source=qr"
+           class="btn" target="_blank">
+          <img src="icons/instagram.png" alt="Instagram">
+          <span>Instagram</span>
+        </a>
+
+        <a href="#" class="btn" target="_blank">
+          <img src="icons/tiktok.png" alt="TikTok">
+          <span>TikTok</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>
