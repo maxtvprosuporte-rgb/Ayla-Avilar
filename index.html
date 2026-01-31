@@ -6,37 +6,51 @@
 <title>Ayla Avilar</title>
 
 <style>
-/* PARTE 1 - CSS */
-
+/* RESET BÁSICO */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', Helvetica, sans-serif;
 }
 
+/* FUNDO PRINCIPAL */
 body {
   min-height: 100vh;
-  color: #fff;
+  width: 100%;
+
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #000 url('imagens/fundo.png') no-repeat center center;
-  background-size: cover; /* Ajusta a imagem para cobrir toda a tela */
+  justify-content: center; /* centro horizontal */
+  align-items: center;     /* centro vertical */
+
+  background-color: #000;
+  background-image: url('imagens/fundo.webp');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
   overflow-x: hidden;
-  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* CONTEÚDO CENTRAL */
 .container {
-  z-index: 2;
   width: 100%;
   max-width: 320px;
   padding: 16px;
+
   display: flex;
   flex-direction: column;
   gap: 24px;
+
   text-align: center;
+  z-index: 2;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%;
+  }
 }
 
 /* BOTÕES TRANSPARENTES/FOSCOS */
